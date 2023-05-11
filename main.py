@@ -10,7 +10,7 @@ def limpar():
             os.system('clear')
 
 opcao = 10
-conexao = abrirBancoDados('localhost','root','!Smcp1205','ouvidoria')
+conexao = abrirBancoDados('localhost','root','!xxxxxxxx','ouvidoria')
 
 while opcao != '5':
     print('╔========================================╗')
