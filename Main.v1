@@ -1,0 +1,170 @@
+
+"""
+Grupo:
+
+Ana Paula Alves Barros
+Andre Tadeu Vasconcelos Lins de Barros
+Gustavo Tomio Magalhães Kubo
+Sérgio Magno Castor Pinheiro
+Thiago Limeira de Alencar
+Yukio Ferreira Yabuta
+
+"""
+
+import os
+import platform
+
+
+def limpar():
+    if (platform.system() == 'Windows'):
+        os.system('cls')
+    if (platform.system() == 'Linux'):
+        os.system('clear')
+
+
+listaReclamacoes = []
+opcao = 'Projeto Ouvidoria'
+
+while opcao != '5':
+    print('==========================================')
+    print('Bem vindo à Ouvidoria da Universidade XYZ!')
+    print('==========================================')
+    print()
+    print('----          MENU OUVIDORIA          ----')
+    print()
+    print('1) Listar as reclamações.')
+    print('2) Adicionar nova reclamação.')
+    print('3) Remover uma reclamação.')
+    print('4) Pesquisar uma reclamação por código.')
+    print('5) Sair do Sistema.')
+    print()
+    opcao = (input('Selecione uma opção: '))
+
+    if opcao == '1':
+        limpar()
+        if len(listaReclamacoes) < 1:
+            print('- Nenhuma reclamação cadastrada no sistema.')
+            print()
+            input('Aperte "Enter" para voltar nas opções. ')
+            limpar()
+        else:
+            print("===========================================")
+            print('-           LISTA DE RECLAMAÇÕES          -')
+            print("===========================================")
+            print()
+            for i in range(len(listaReclamacoes)):
+                print("-------------------------------------------")
+                print(f'CÓDIGO {i + 1}: {listaReclamacoes[i]}')
+            print("-------------------------------------------")
+            print()
+            input('Aperte "Enter" para voltar nas opções. ')
+            limpar()
+
+    elif opcao == '2':
+        limpar()
+        valor = input('Por favor, informe o título da nova reclamação, em seguida, aperte "Enter": ')
+
+        if valor == ' ' or len(valor) <= 1:
+            print()
+            print('Descrição inválida. Por favor, digite algum texto sobre a reclamação.')
+            print()
+            input('Aperte "Enter" para voltar nas opções. ')
+            limpar()
+
+        else:
+            listaReclamacoes.append(valor)
+            print("")
+            print(f'Reclamação cadastrada com sucesso. O código da reclamação é {len(listaReclamacoes)}.')
+            print("")
+            input('Aperte "Enter" para voltar nas opções. ')
+            limpar()
+
+    elif opcao == '3':
+        limpar()
+        if len(listaReclamacoes) < 1:
+            print()
+            print('Nenhuma reclamação cadastrada no sistema para remover.')
+            print()
+            input('Aperte "Enter" para voltar nas opções. ')
+            limpar()
+        else:
+            print("===========================================")
+            print('-           LISTA DE RECLAMAÇÕES          -')
+            print("===========================================")
+            print()
+            for i in range(len(listaReclamacoes)):
+                print("-------------------------------------------")
+                print(f'CÓDIGO {i + 1}: {listaReclamacoes[i]}')
+                print("-------------------------------------------")
+            print()
+            codigoRemover = input('Por favor, qual o código da reclamação que deseja remover? ')
+
+            try:
+                codigoRemoverInt = int(codigoRemover)
+            except:
+                print()
+                print('Código inválido. Por favor, digite apenas número de acordo com a listagem!')
+                print()
+                input('Aperte "Enter" para voltar nas opções. ')
+                limpar()
+            else:
+                if codigoRemoverInt <= 0 or codigoRemoverInt > len(listaReclamacoes):
+                    print()
+                    print('Código inválido. Por favor, digite apenas número de acordo com a listagem!')
+                    print()
+                    input('Aperte "Enter" para voltar nas opções. ')
+                    limpar()
+                else:
+                    itemRemovido = listaReclamacoes.pop(codigoRemoverInt - 1)
+                    print()
+                    print(f'A reclamação "CÓDIGO {codigoRemoverInt}: {itemRemovido}" foi removido com sucesso!')
+                    input('Aperte "Enter" para voltar nas opções. ')
+                    limpar()
+
+    elif opcao == '4':
+        limpar()
+        if len(listaReclamacoes) < 1:
+            print()
+            print('Nenhuma reclamação cadastrada no sistema para pesquisar.')
+            print()
+            input('Aperte "Enter" para voltar nas opções. ')
+            limpar()
+        else:
+            codigoPesquisar = input('Por favor, informe o código da reclamação: ')
+
+            try:
+                codigoPesquisarInt = int(codigoPesquisar)
+
+            except:
+                print()
+                print('Código inválido. Por favor, digite apenas um número de código cadastrado')
+                print("")
+                input('Aperte "Enter" para voltar nas opções. ')
+                limpar()
+            else:
+                if codigoPesquisarInt <= 0 or codigoPesquisarInt > len(listaReclamacoes):
+                    print()
+                    print('Código inválido. Por favor, digite apenas um número de código cadastrado!')
+                    print()
+                    input('Aperte "Enter" para voltar nas opções. ')
+                    limpar()
+                else:
+                    print()
+                    print(f'Resultado da pesquisa: "{listaReclamacoes[codigoPesquisarInt - 1]}"')
+                    print()
+                    input('Aperte "Enter" para voltar nas opções. ')
+                    limpar()
+
+    elif opcao == '5':
+        limpar()
+        print("")
+        print('Muito obrigado por usar o Sistema Ouvidoria. Até logo!')
+        print("")
+        break
+
+    elif opcao != '5':
+        limpar()
+        print('Opção inválida. Por favor, escolha uma das opções sugeridas.')
+        print("")
+        input('Aperte "Enter"" para voltar nas opções. ')
+        limpar()
